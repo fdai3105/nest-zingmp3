@@ -6,14 +6,14 @@ export class VideoService {
   constructor(private readonly zingService: ZingService) {}
 
   async videoDetail(id: string) {
-    return await this.zingService.requestZing({
+    return await this.zingService.request({
       path: '/api/v2/video/getDetail',
       qs: { id: id },
     });
   }
 
   async hotMV() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 5 },
     });

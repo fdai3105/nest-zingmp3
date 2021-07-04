@@ -6,7 +6,7 @@ export class PlaylistService {
   constructor(private readonly zingService: ZingService) {}
 
   async suggest() {
-    const home = await this.zingService.requestZing({
+    const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 1 },
     });
@@ -14,7 +14,7 @@ export class PlaylistService {
   }
 
   async genres() {
-    const home = await this.zingService.requestZing({
+    const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 2 },
     });
@@ -22,7 +22,7 @@ export class PlaylistService {
   }
 
   async todayPlaylists() {
-    const home = await this.zingService.requestZing({
+    const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 2 },
     });
@@ -36,7 +36,7 @@ export class PlaylistService {
   }
 
   async todayEvents() {
-    const home = await this.zingService.requestZing({
+    const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 2 },
     });
@@ -44,7 +44,7 @@ export class PlaylistService {
   }
 
   async chartBanner() {
-    const home = await this.zingService.requestZing({
+    const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 2 },
     });
@@ -52,14 +52,14 @@ export class PlaylistService {
   }
 
   async chartDetail(id: string) {
-    return await this.zingService.requestZing({
+    return await this.zingService.request({
       path: '/api/v2/chart/getWeekChart',
       qs: { id: id },
     });
   }
 
   async topPlaylist100() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 3 },
     });
@@ -67,7 +67,7 @@ export class PlaylistService {
   }
 
   async todayPlaylist2() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 3 },
     });
@@ -75,7 +75,7 @@ export class PlaylistService {
   }
 
   async newAlbum() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 4 },
     });
@@ -83,7 +83,7 @@ export class PlaylistService {
   }
 
   async zingMix() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/mix',
       qs: { page: 1 },
     });
@@ -91,7 +91,7 @@ export class PlaylistService {
   }
 
   async playlistDetail(id: string) {
-    const data = await this.zingService.requestZing({
+    const data = await this.zingService.request({
       path: '/api/v2/playlist/getDetail',
       qs: { id: id },
     });

@@ -15,11 +15,7 @@ const cookiejar = request.jar(new FileCookieStore(cookiePath));
 
 @Injectable()
 export class ZingService {
-  private static async getCookie() {
-    if (!cookiejar.getCookies('zingmp3.vn')) await request.get(URL_API);
-  }
-
-  async requestZing({ path, qs }) {
+  async request({ path, qs }) {
     return new Promise(async (resolve, reject) => {
       try {
         await ZingService.getCookie();
@@ -45,7 +41,7 @@ export class ZingService {
     });
   }
 
-  async requestZingWithoutHash({ path, qs }) {
+  async requestWithoutHash({ path, qs }) {
     return new Promise(async (resolve, reject) => {
       try {
         await ZingService.getCookie();
@@ -67,6 +63,10 @@ export class ZingService {
         reject(error);
       }
     });
+  }
+
+  private static async getCookie() {
+    if (!cookiejar.getCookies('zingmp3.vn')) await request.get(URL_API);
   }
 
   private hashParam(path, param = '') {

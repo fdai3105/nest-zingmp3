@@ -7,7 +7,7 @@ export class ArtistService {
 
   // https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/artists/v2/trinh-thang-binh.png
   async topArtist() {
-    const detail = await this.zingService.requestZing({
+    const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 3 },
     });
@@ -15,7 +15,7 @@ export class ArtistService {
   }
 
   async artistDetail(name: string) {
-    return await this.zingService.requestZingWithoutHash({
+    return await this.zingService.requestWithoutHash({
       path: '/api/v2/artist/getDetail',
       qs: { alias: name },
     });
