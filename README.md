@@ -25,8 +25,6 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-<br />
-APIs:
   - apis song
   - apis playlist
   - apis artist
