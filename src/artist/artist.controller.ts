@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ArtistService } from './artist.service';
 
 @Controller('artist')
@@ -11,7 +11,7 @@ export class ArtistController {
   }
 
   @Get('artist-detail')
-  artistDetail() {
-    return this.artistService.artistDetail();
+  artistDetail(@Query('name') name: string) {
+    return this.artistService.artistDetail(name);
   }
 }

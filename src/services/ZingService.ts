@@ -29,6 +29,31 @@ export class ZingService {
           url: URL_API + path,
           qs: {
             ...qs,
+            alias: 'Min',
+            ctime: time,
+            sig,
+            apiKey: API_KEY,
+          },
+          gzip: true,
+          json: true,
+          jar: cookiejar,
+        });
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  async requestZingWithoutHash({ path, qs }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await ZingService.getCookie();
+        const sig = this.hashParam(path, '');
+        const data = await request({
+          url: URL_API + path,
+          qs: {
+            ...qs,
             ctime: time,
             sig,
             apiKey: API_KEY,
@@ -46,6 +71,7 @@ export class ZingService {
 
   private hashParam(path, param = '') {
     const hash256 = this.getHash256(`ctime=${time}${param}`);
+    console.log(path + hash256);
     return this.getHmac512(path + hash256, SECRET_KEY);
   }
 

@@ -14,10 +14,10 @@ export class ArtistService {
     return detail['data']['items'][0];
   }
 
-  async artistDetail() {
-    return await this.zingService.requestZing({
+  async artistDetail(name: string) {
+    return await this.zingService.requestZingWithoutHash({
       path: '/api/v2/artist/getDetail',
-      qs: { alias: 'min' },
+      qs: { alias: name },
     });
   }
 }
