@@ -15,41 +15,17 @@ const cookiejar = request.jar(new FileCookieStore(cookiePath));
 
 @Injectable()
 export class ZingService {
-  async request({ path, qs }) {
+  async request({ path, qs, qs2 }) {
     return new Promise(async (resolve, reject) => {
       try {
         await ZingService.getCookie();
-        const param = new URLSearchParams(qs);
-        const sig = this.hashParam(path, param.toString());
+        const param = new URLSearchParams(qs).toString().split('&').join('');
+        const sig = this.hashParam(path, param);
         const data = await request({
           url: URL_API + path,
           qs: {
             ...qs,
-            alias: 'Min',
-            ctime: time,
-            sig,
-            apiKey: API_KEY,
-          },
-          gzip: true,
-          json: true,
-          jar: cookiejar,
-        });
-        resolve(data);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }
-
-  async requestWithoutHash({ path, qs }) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await ZingService.getCookie();
-        const sig = this.hashParam(path, '');
-        const data = await request({
-          url: URL_API + path,
-          qs: {
-            ...qs,
+            ...qs2,
             ctime: time,
             sig,
             apiKey: API_KEY,
@@ -71,7 +47,6 @@ export class ZingService {
 
   private hashParam(path, param = '') {
     const hash256 = this.getHash256(`ctime=${time}${param}`);
-    console.log(path + hash256);
     return this.getHmac512(path + hash256, SECRET_KEY);
   }
 

@@ -9,6 +9,7 @@ export class SongService {
     return await this.zingService.request({
       path: '/api/v2/song/getInfo',
       qs: { id: id },
+      qs2: {},
     });
   }
 
@@ -16,6 +17,7 @@ export class SongService {
     return await this.zingService.request({
       path: '/api/v2/song/getStreaming',
       qs: { id: id },
+      qs2: {},
     });
   }
 
@@ -23,6 +25,7 @@ export class SongService {
     const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 4 },
+      qs2: {},
     });
     return detail['data']['items'][1];
   }
@@ -31,6 +34,7 @@ export class SongService {
     const songs = await this.zingService.request({
       path: '/api/v2/chart/getNewReleaseChart',
       qs: {},
+      qs2: {},
     });
     return songs;
   }
@@ -39,6 +43,7 @@ export class SongService {
     return await this.zingService.request({
       path: '/api/v2/lyric',
       qs: { id: id },
+      qs2: {},
     });
   }
 
@@ -46,6 +51,7 @@ export class SongService {
     const home = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 2 },
+      qs2: {},
     });
     return home['data']['items'][5];
   }

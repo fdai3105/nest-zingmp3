@@ -5,6 +5,16 @@ import { VideoService } from './video.service';
 export class VideoController {
   constructor(private readonly videoService: VideoService) {}
 
+  @Get()
+  videos(@Query('id') id: string) {
+    return this.videoService.videosByCountry(id);
+  }
+
+  @Get('categories')
+  categories(@Query('id') id: string) {
+    return this.videoService.videoCategories(id);
+  }
+
   @Get('detail')
   videoDetail(@Query('id') id: string) {
     return this.videoService.videoDetail(id);

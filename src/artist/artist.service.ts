@@ -10,14 +10,16 @@ export class ArtistService {
     const detail = await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 3 },
+      qs2: {},
     });
     return detail['data']['items'][0];
   }
 
   async artistDetail(name: string) {
-    return await this.zingService.requestWithoutHash({
+    return await this.zingService.request({
       path: '/api/v2/artist/getDetail',
-      qs: { alias: name },
+      qs: {},
+      qs2: { alias: name },
     });
   }
 }
