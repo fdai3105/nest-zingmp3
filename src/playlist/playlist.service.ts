@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ZingService } from '../services/ZingService';
+import { response } from '../utils/Ultis';
 
 @Injectable()
 export class PlaylistService {
@@ -11,7 +12,7 @@ export class PlaylistService {
       qs: { page: 1 },
       qs2: {},
     });
-    return home['items'][2];
+    return response(200, 'Success', home['data']['items'][2]);
   }
 
   async genres() {
@@ -20,7 +21,7 @@ export class PlaylistService {
       qs: { page: 2 },
       qs2: {},
     });
-    return home['data']['items'][0];
+    return response(200, 'Success', home['data']['items'][0]);
   }
 
   async todayPlaylists() {
