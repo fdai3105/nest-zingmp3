@@ -21,11 +21,6 @@ export class PlaylistController {
     return this.playlistService.todayPlaylists();
   }
 
-  @Get('events')
-  todayEvents() {
-    return this.playlistService.todayEvents();
-  }
-
   @Get('chart-banner')
   chartBanner() {
     return this.playlistService.chartBanner();

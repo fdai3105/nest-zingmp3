@@ -36,16 +36,7 @@ export class PlaylistService {
         list.push(item);
       }
     });
-    return { item: list };
-  }
-
-  async todayEvents() {
-    const home = await this.zingService.request({
-      path: '/api/v2/home',
-      qs: { page: 2 },
-      qs2: {},
-    });
-    return home['data']['items'][4];
+    return response(200, 'Success', list);
   }
 
   async chartBanner() {

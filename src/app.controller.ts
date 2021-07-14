@@ -9,4 +9,14 @@ export class AppController {
   getHello() {
     return this.appService.banners();
   }
+
+  @Get('events')
+  todayEvents() {
+    return this.appService.todayEvents();
+  }
+
+  @Get('home-chart')
+  homeChart() {
+    return this.appService.homeChart();
+  }
 }

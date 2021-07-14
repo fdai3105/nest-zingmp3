@@ -14,4 +14,22 @@ export class AppService {
     });
     return response(200, 'Success', home['data']['items'][0]);
   }
+
+  async todayEvents() {
+    const home = await this.zingService.request({
+      path: '/api/v2/home',
+      qs: { page: 2 },
+      qs2: {},
+    });
+    return response(200, 'Success', home['data']['items'][4]);
+  }
+
+  async homeChart() {
+    const data = await this.zingService.request({
+      path: '/api/v2/chart/getHome',
+      qs: {},
+      qs2: {},
+    });
+    return response(200, 'Success', data['data']['RTChart']);
+  }
 }
