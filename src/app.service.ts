@@ -8,7 +8,7 @@ export class AppService {
 
   async banners() {
     const home = await this.zingService.request({
-      path: '/api/v2/home',
+      path: '/api/v2/page/get/home',
       qs: { page: 1 },
       qs2: {},
     });
@@ -17,7 +17,7 @@ export class AppService {
 
   async todayEvents() {
     const home = await this.zingService.request({
-      path: '/api/v2/home',
+      path: '/api/v2/page/get/home',
       qs: { page: 2 },
       qs2: {},
     });
@@ -26,7 +26,7 @@ export class AppService {
 
   async homeChart() {
     const data = await this.zingService.request({
-      path: '/api/v2/chart/getHome',
+      path: '/api/v2/page/get/chart-home',
       qs: {},
       qs2: {},
     });
