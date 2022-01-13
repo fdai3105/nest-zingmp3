@@ -7,7 +7,7 @@ export class SongService {
 
   async songInfo(id: string) {
     return await this.zingService.request({
-      path: '/api/v2/song/getInfo',
+      path: '/api/v2/song/get/info',
       qs: { id: id },
       qs2: {},
     });
@@ -15,7 +15,7 @@ export class SongService {
 
   async songStream(id: string) {
     return await this.zingService.request({
-      path: '/api/v2/song/getStreaming',
+      path: '/api/v2/song/get/streaming',
       qs: { id: id },
       qs2: {},
     });
@@ -23,25 +23,16 @@ export class SongService {
 
   async newSongs() {
     const detail = await this.zingService.request({
-      path: '/api/v2/home',
+      path: '/api/v2/page/get/home',
       qs: { page: 4 },
       qs2: {},
     });
-    return detail['data']['items'][1];
-  }
-
-  async topNewSongs() {
-    const songs = await this.zingService.request({
-      path: '/api/v2/chart/getNewReleaseChart',
-      qs: {},
-      qs2: {},
-    });
-    return songs;
+    return detail['data']['items'][2];
   }
 
   async songLyric(id: string) {
     return await this.zingService.request({
-      path: '/api/v2/lyric',
+      path: '/api/v2/lyric/get/lyric',
       qs: { id: id },
       qs2: {},
     });
@@ -49,10 +40,28 @@ export class SongService {
 
   async chart() {
     const home = await this.zingService.request({
-      path: '/api/v2/home',
-      qs: { page: 2 },
+      path: '/api/v2/page/get/chart-home',
+      qs: {},
       qs2: {},
     });
-    return home['data']['items'][5];
+    return home['data'];
+  }
+
+  async chartNewRelease() {
+    const songs = await this.zingService.request({
+      path: '/api/v2/page/get/chart-home',
+      qs: {},
+      qs2: {},
+    });
+    return songs['data']['newRelease'];
+  }
+
+  async chartWeek() {
+    const songs = await this.zingService.request({
+      path: '/api/v2/page/get/chart-home',
+      qs: {},
+      qs2: {},
+    });
+    return songs['data']['weekChart'];
   }
 }

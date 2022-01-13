@@ -17,7 +17,7 @@ export class SongController {
 
   @Get('top-new')
   topNewSongs() {
-    return this.songService.topNewSongs();
+    return this.songService.chartNewRelease();
   }
 
   @Get('new')
@@ -33,5 +33,10 @@ export class SongController {
   @Get('chart')
   chart() {
     return this.songService.chart();
+  }
+
+  @Get('chart-week')
+  chartWeek() {
+    return this.songService.chartWeek();
   }
 }

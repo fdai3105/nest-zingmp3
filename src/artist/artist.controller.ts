@@ -5,13 +5,13 @@ import { ArtistService } from './artist.service';
 export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}
 
-  @Get('top-artists')
-  topArtists() {
+  @Get('top')
+  getTop() {
     return this.artistService.topArtist();
   }
 
-  @Get('artist-detail')
-  artistDetail(@Query('name') name: string) {
+  @Get('detail')
+  getDetail(@Query('name') name: string) {
     return this.artistService.artistDetail(name);
   }
 }
