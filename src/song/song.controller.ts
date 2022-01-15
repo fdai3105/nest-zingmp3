@@ -20,11 +20,6 @@ export class SongController {
     return this.songService.chartNewRelease();
   }
 
-  @Get('new')
-  newSongs() {
-    return this.songService.newSongs();
-  }
-
   @Get('lyric')
   lyric(@Query('id') id: string) {
     return this.songService.songLyric(id);

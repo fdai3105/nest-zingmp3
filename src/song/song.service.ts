@@ -21,15 +21,6 @@ export class SongService {
     });
   }
 
-  async newSongs() {
-    const detail = await this.zingService.request({
-      path: '/api/v2/page/get/home',
-      qs: { page: 4 },
-      qs2: {},
-    });
-    return detail['data']['items'][2];
-  }
-
   async songLyric(id: string) {
     return await this.zingService.request({
       path: '/api/v2/lyric/get/lyric',
