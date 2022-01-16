@@ -3,14 +3,15 @@ import { ZingService } from '../services/ZingService';
 
 @Injectable()
 export class SongService {
-  constructor(private readonly zingService: ZingService) {}
+  constructor(private readonly zingService: ZingService) { }
 
   async songInfo(id: string) {
-    return await this.zingService.request({
-      path: '/api/v2/song/get/info',
+    const resp = await this.zingService.request({
+      path: '/api/v2/page/get/song',
       qs: { id: id },
       qs2: {},
     });
+    return resp['data'];
   }
 
   async songStream(id: string) {
