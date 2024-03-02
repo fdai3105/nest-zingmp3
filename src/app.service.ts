@@ -27,18 +27,17 @@ export class AppService {
       qs: { page: 4 },
       qs2: {},
     });
-    // const home5 = await this.zingService.request({
-    //   path: '/api/v2/page/get/home',
-    //   qs: { page: 5 },
-    //   qs2: {},
-    // });
-    const demo = [
-      ...home['data']['items'],
-      ...home2['data']['items'],
-      ...home3['data']['items'],
-      ...home4['data']['items'],
-      // ...home5['data']['items'],
-    ];
+    const home5 = await this.zingService.request({
+      path: '/api/v2/page/get/home',
+      qs: { page: 5 },
+      qs2: {},
+    });
+    let demo = [];
+    if (home['data']['items']) demo = [...demo, home['data']['items']];
+    if (home2['data']['items']) demo = [...demo, home2['data']['items']];
+    if (home3['data']['items']) demo = [...demo, home3['data']['items']];
+    if (home4['data']['items']) demo = [...demo, home4['data']['items']];
+    if (home5['data']['items']) demo = [...demo, home5['data']['items']];
     return response(200, 'Success', demo);
   }
 }

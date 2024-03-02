@@ -1,7 +1,7 @@
-export function response(status = 200, message: 'Success', data: any) {
+export function response(status = 200, message: string, data: any) {
   return {
-    err: status,
-    msg: message,
+    status: status ?? -1,
+    message: message ?? 'Lỗi không xác định -1',
     data: data,
   };
 }
