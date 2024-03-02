@@ -5,11 +5,6 @@ import { PlaylistService } from './playlist.service';
 export class PlaylistController {
   constructor(private readonly playlistService: PlaylistService) {}
 
-  @Get('zing-mix')
-  zingMix() {
-    return this.playlistService.zingMix();
-  }
-
   @Get('detail')
   playlistDetail(@Query('id') id: string) {
     return this.playlistService.playlistDetail(id);

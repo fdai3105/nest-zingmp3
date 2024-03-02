@@ -22,8 +22,11 @@ export class ZingService {
     return new Promise(async (resolve, reject) => {
       try {
         await ZingService.getCookie();
-        const param = new URLSearchParams(qs).toString().split('&').join('');
-        const sig = this.hashParam(path, param);
+        const param = new URLSearchParams({
+          ...qs,
+          version: apiVersion,
+        }).toString();
+        const sig = this.hashParam(path, param.split('&').join(''));
         const data = await request({
           url: URL_API + path,
           qs: {
@@ -40,8 +43,7 @@ export class ZingService {
         });
         resolve(response(data['err'], data['msg'], data['data']));
       } catch (error) {
-        resolve(response(error['err'], error['msg'], error['data']));
-        reject(error);
+        reject(response(error['err'], error['msg'], error['data']));
       }
     });
   }
