@@ -9,7 +9,6 @@ export class ArtistService {
   async artistDetail(name: string) {
     return await this.zingService.request({
       path: '/api/v2/page/get/artist',
-      qs: {},
       qs2: { alias: name },
     });
   }

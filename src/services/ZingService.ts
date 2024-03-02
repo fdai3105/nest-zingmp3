@@ -3,11 +3,13 @@ import * as fs from 'fs';
 import { createHash, createHmac } from 'crypto';
 import request = require('request-promise');
 import { Injectable } from '@nestjs/common';
+import { response } from 'src/utils/Ultis';
 
 const URL_API = 'https://zingmp3.vn';
 const API_KEY = 'kI44ARvPwaqL7v0KuDSM0rGORtdY1nnw';
 const SECRET_KEY = '882QcNXV4tUZbvAsjmFOHqNC1LpcBRKW';
 const cookiePath = 'ZingMp3.json';
+const apiVersion = '1.9.110';
 const time = Math.floor(Date.now() / 1000);
 
 if (!fs.existsSync(cookiePath)) fs.closeSync(fs.openSync(cookiePath, 'w'));
@@ -15,7 +17,8 @@ const cookiejar = request.jar(new FileCookieStore(cookiePath));
 
 @Injectable()
 export class ZingService {
-  async request({ path, qs, qs2 }) {
+  /// qs2: trường này sẽ không decode vào sig
+  async request({ path, qs = {}, qs2 = {} }) {
     return new Promise(async (resolve, reject) => {
       try {
         await ZingService.getCookie();
@@ -26,16 +29,18 @@ export class ZingService {
           qs: {
             ...qs,
             ...qs2,
+            version: apiVersion,
+            apiKey: API_KEY,
             ctime: time,
             sig,
-            apiKey: API_KEY,
           },
           gzip: true,
           json: true,
           jar: cookiejar,
         });
-        resolve(data);
+        resolve(response(data['err'], data['msg'], data['data']));
       } catch (error) {
+        resolve(response(error['err'], error['msg'], error['data']));
         reject(error);
       }
     });

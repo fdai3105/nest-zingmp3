@@ -9,17 +9,14 @@ export class VideoService {
     return await this.zingService.request({
       path: '/api/v2/video/getDetail',
       qs: { id: id },
-      qs2: {},
     });
   }
 
   async hotMV() {
-    const detail = await this.zingService.request({
+    return await this.zingService.request({
       path: '/api/v2/home',
       qs: { page: 5 },
-      qs2: {},
     });
-    return detail['data']['items'][0];
   }
 
   /*
@@ -36,9 +33,7 @@ export class VideoService {
         type: 'genre',
         // count: 20,
       },
-      qs2: {
-        sort: sort,
-      },
+      qs2: { sort: sort },
     });
   }
 
@@ -52,7 +47,6 @@ export class VideoService {
         id: id,
         type: 'video',
       },
-      qs2: {},
     });
   }
 }

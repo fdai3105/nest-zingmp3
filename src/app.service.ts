@@ -10,27 +10,22 @@ export class AppService {
     const home = await this.zingService.request({
       path: '/api/v2/page/get/home',
       qs: { page: 1 },
-      qs2: {},
     });
     const home2 = await this.zingService.request({
       path: '/api/v2/page/get/home',
       qs: { page: 2 },
-      qs2: {},
     });
     const home3 = await this.zingService.request({
       path: '/api/v2/page/get/home',
       qs: { page: 3 },
-      qs2: {},
     });
     const home4 = await this.zingService.request({
       path: '/api/v2/page/get/home',
       qs: { page: 4 },
-      qs2: {},
     });
     const home5 = await this.zingService.request({
       path: '/api/v2/page/get/home',
       qs: { page: 5 },
-      qs2: {},
     });
     let demo = [];
     if (home['data']['items']) demo = [...demo, home['data']['items']];
